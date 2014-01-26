@@ -1,6 +1,7 @@
 "use strict";
 
 var configuration = require("configvention"),
+    path = require("path"),
     filesystem = require("fs"),
     doT = require("dot"),
 
@@ -26,12 +27,11 @@ var configuration = require("configvention"),
         }
     },
 
-    templateDirectoryPath = "/templates/",
-    outputDirectoryPath = "/output/",
+    resolvePath = function() {
+        var args = [].slice.call(arguments),
+            parts = [__dirname].concat(args);
 
-    resolvePath = function(path) {
-        // TODO: actually resolve path
-        return __dirname + path;
+        return path.resolve.apply(path, parts);
     },
 
     readFile = function(path, callback) {
@@ -45,11 +45,17 @@ var configuration = require("configvention"),
     },
 
     getTemplatePath = function(filename) {
-        return resolvePath(templateDirectoryPath + filename);
+        var templateDirectoryPath = configuration.get("templates-folder"),
+            resolved = resolvePath(templateDirectoryPath, filename);
+
+        return resolved;
     },
 
     getOutputPath = function(filename) {
-        return resolvePath(outputDirectoryPath + filename);
+        var outputDirectoryPath = configuration.get("output-folder"),
+            resolved = resolvePath(outputDirectoryPath, filename);
+
+        return resolved;
     },
 
     getTemplate = function(filename, callback) {
@@ -73,11 +79,6 @@ var configuration = require("configvention"),
 
             writeOutput(templateFilename, output, function(error) {
                 failOrNot(error);
-
-                //console.log(input);
-                console.log(template);
-                console.log(compiledTemplate);
-                console.log(output);
             });
         });
     },
