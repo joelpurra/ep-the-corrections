@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+        Corrected votes by the Members of the European Parliament
+    </title>
+
+    <style>
+    table.votes {
+        width: 100%;
+    }
+    table.votes col {
+        width: 26.6667%;
+    }
+    table.votes col:first-of-type, table.votes col:last-of-type {
+        width: 10%;
+    }
+    table.votes col:nth-of-type(odd) {
+        background-color: #f6f6f6;
+    }
+    table.votes col:nth-of-type(even) {
+        background-color: #f0f0f0;
+    }
+    table.votes td, table.votes th {
+        vertical-align: top;
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Corrected votes by the Members of the European Parliament
+    </h1>
+
+    <section>
+        <p>
+            <a href="https://github.com/joelpurra/ep-the-corrections">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014 <a href="http://joelpurra.com/">Joel Purra</a>. Released under the <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0 License</a>.
+        </p>
+        <p>
+            Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps">open data dumps</a> from <a href="http://parltrack.euwiki.org/">Parltrack</a>, to visalize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/">Members</a> of the <a href="http://www.europarl.europa.eu/">European Parliament</a>.
+        </p>
+        <p>
+            Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
+        </p>
+        <hr />
+    </section>
+
+    {{~it :voting:votingIndex}}
+    <article>
+        <h2><a href="{{=voting.dossierid}}">{{=voting.title}}</a> 
+            <!-- TODO: create a reusable date formatting function -->
+            <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
+        </h2>
+
+        <!-- TODO: create a reusable vote count/correctional array formatting function -->
+        <!-- TODO: reformat name display -->
+        <table class="votes">
+            <legend>Votes recorded for <a href="{{=voting.dossierid}}">{{=voting.title}}</a> at
+                <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
+            </legend>
+            <colgroup>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Votes</th>
+                    <th scope="col">For</th>
+                    <th scope="col">Abstain</th>
+                    <th scope="col">Against</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Total count</th>
+                    <td>{{=voting.for.total}}</td>
+                    <td>{{=voting.abstain.total}}</td>
+                    <td>{{=voting.against.total}}</td>
+                    <td>{{=(voting.for.total + voting.abstain.total + voting.against.total)}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Corrected count</th>
+                    <td>{{=voting.for.names.length}}</td>
+                    <td>{{=voting.abstain.names.length}}</td>
+                    <td>{{=voting.against.names.length}}</td>
+                    <td>{{=(voting.for.names.length + voting.abstain.names.length + voting.against.names.length)}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Correctors</th>
+                    <td>
+                        <ul>
+                            {{~voting.for.names :name:nameIndex}}
+                            <li>{{=name}}</li>
+                            {{~}}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {{~voting.abstain.names :name:nameIndex}}
+                            <li>{{=name}}</li>
+                            {{~}}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {{~voting.against.names :name:nameIndex}}
+                            <li>{{=name}}</li>
+                            {{~}}
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+    {{~}}
+    <footer>
+        <hr />
+        <p>
+            <a href="https://github.com/joelpurra/ep-the-corrections">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014 <a href="http://joelpurra.com/">Joel Purra</a>. Released under the <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0 License</a>.
+        </p>
+        <p>
+            Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps">open data dumps</a> from <a href="http://parltrack.euwiki.org/">Parltrack</a>, to visalize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/">Members</a> of the <a href="http://www.europarl.europa.eu/">European Parliament</a>.
+        </p>
+        <p>
+            Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
+        </p>
+    </footer>
+</body>
+
+</html>
