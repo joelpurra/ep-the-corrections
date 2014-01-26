@@ -30,6 +30,13 @@
         vertical-align: top;
         margin: 0;
     }
+    .voting .voting-anchor-link {
+        visibility: hidden;
+        text-decoration: none;
+    }
+    .voting:hover .voting-anchor-link {
+        visibility: visible;
+    }
     </style>
 </head>
 
@@ -55,8 +62,9 @@
     <!-- TODO: create a reusable vote count/correctional array formatting function -->
     <!-- TODO: reformat name display -->
     {{~it :voting:votingIndex}}
-    <article>
+    <article id="{{=voting.dossierid}}" class="voting">
         <h2>
+            <a href="#{{=voting.dossierid}}" class="voting-anchor-link">∞</a>
             <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
             <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
         </h2>
