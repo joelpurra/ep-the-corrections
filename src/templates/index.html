@@ -48,6 +48,9 @@
         <hr />
     </section>
 
+    <!-- TODO: create a reusable date formatting function -->
+    <!-- TODO: create a reusable vote count/correctional array formatting function -->
+    <!-- TODO: reformat name display -->
     {{~it :voting:votingIndex}}
     <article>
         <h2>
@@ -55,8 +58,6 @@
             <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
         </h2>
 
-        <!-- TODO: create a reusable vote count/correctional array formatting function -->
-        <!-- TODO: reformat name display -->
         <table class="votes">
             <caption>Votes recorded for <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a> at
                 <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
@@ -87,32 +88,41 @@
                 </tr>
                 <tr>
                     <th scope="row">Corrected count</th>
-                    <td>{{=voting.for.names.length}}</td>
-                    <td>{{=voting.abstain.names.length}}</td>
-                    <td>{{=voting.against.names.length}}</td>
-                    <td>{{=(voting.for.names.length + voting.abstain.names.length + voting.against.names.length)}}</td>
+                    <td>{{=(voting.for.correctional ? voting.for.correctional.length : 0)}}</td>
+                    <td>{{=(voting.abstain.correctional ? voting.abstain.correctional.length : 0)}}</td>
+                    <td>{{=(voting.against.correctional ? voting.against.correctional.length : 0)}}</td>
+                    <td>{{=((voting.for.correctional ? voting.for.correctional.length : 0) + (voting.abstain.correctional ? voting.abstain.correctional.length : 0) + (voting.against.correctional ? voting.against.correctional.length : 0))}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Correctors</th>
                     <td>
                         <ul>
-                            {{~voting.for.names :name:nameIndex}}
-                            <li>{{=name}}</li>
-                            {{~}}
+                            {{? voting.for.correctional }} {{~voting.for.correctional :correction:correctionIndex}} {{? correction.id }}
+                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
+                            </li>
+                            {{??}}
+                            <li>{{=correction}}</li>
+                            {{?}} {{~}} {{?}}
                         </ul>
                     </td>
                     <td>
                         <ul>
-                            {{~voting.abstain.names :name:nameIndex}}
-                            <li>{{=name}}</li>
-                            {{~}}
+                            {{? voting.abstain.correctional }} {{~voting.abstain.correctional :correction:correctionIndex}} {{? correction.id }}
+                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
+                            </li>
+                            {{??}}
+                            <li>{{=correction}}</li>
+                            {{?}} {{~}} {{?}}
                         </ul>
                     </td>
                     <td>
                         <ul>
-                            {{~voting.against.names :name:nameIndex}}
-                            <li>{{=name}}</li>
-                            {{~}}
+                            {{? voting.against.correctional }} {{~voting.against.correctional :correction:correctionIndex}} {{? correction.id }}
+                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
+                            </li>
+                            {{??}}
+                            <li>{{=correction}}</li>
+                            {{?}} {{~}} {{?}}
                         </ul>
                     </td>
                     <td></td>
