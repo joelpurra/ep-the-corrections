@@ -14,7 +14,17 @@ Developed during the [Europarl Hackathon](http://europarl.me/), in preparation f
 
 ## Usage
 
-`node render-templates.js --erroneous-votes="/path/to/correctionals.name-strings.json" [--templates-folder="templates/"] [--output-folder="output/"]`
+`node render-templates.js --erroneous-votes="/path/to/correctionals.json"`
+
+### Optional arguments
+
+- `--templates-folder="templates/"`
+- `--output-folder="output/"`
+
+### Configuration
+
+It's also possible to create a configuration file, `src/render-templates.js.config.json`, which would override values in `src/render-templates.js.defaults.config.json`. This is a per user/machine file, and should not be checked in.
+
 
 
 ## Todo
