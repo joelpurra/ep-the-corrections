@@ -50,15 +50,15 @@
 
     {{~it :voting:votingIndex}}
     <article>
-        <h2><a href="{{=voting.dossierid}}">{{=voting.title}}</a> 
-            <!-- TODO: create a reusable date formatting function -->
+        <h2>
+            <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
             <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
         </h2>
 
         <!-- TODO: create a reusable vote count/correctional array formatting function -->
         <!-- TODO: reformat name display -->
         <table class="votes">
-            <caption>Votes recorded for <a href="{{=voting.dossierid}}">{{=voting.title}}</a> at
+            <caption>Votes recorded for <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a> at
                 <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
             </caption>
             <colgroup>
