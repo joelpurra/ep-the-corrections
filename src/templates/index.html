@@ -58,9 +58,9 @@
         <!-- TODO: create a reusable vote count/correctional array formatting function -->
         <!-- TODO: reformat name display -->
         <table class="votes">
-            <legend>Votes recorded for <a href="{{=voting.dossierid}}">{{=voting.title}}</a> at
+            <caption>Votes recorded for <a href="{{=voting.dossierid}}">{{=voting.title}}</a> at
                 <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
-            </legend>
+            </caption>
             <colgroup>
                 <col></col>
                 <col></col>
