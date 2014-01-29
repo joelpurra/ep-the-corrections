@@ -30,6 +30,9 @@
         vertical-align: top;
         margin: 0;
     }
+    .voting .voting-anchor-placeholder {
+        visibility: hidden;
+    }
     .voting .voting-anchor-link {
         visibility: hidden;
         text-decoration: none;
@@ -64,13 +67,19 @@
     {{~it :voting:votingIndex}}
     <article id="{{=voting.dossierid}}" class="voting">
         <h2>
+            {{? voting.dossierid }}
             <a href="#{{=voting.dossierid}}" class="voting-anchor-link">∞</a>
             <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
+            {{??}}
+            <span class="voting-anchor-placeholder">∞</span>
+            {{=voting.title}} {{?}}
             <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
         </h2>
 
         <table class="votes">
-            <caption>Votes recorded for <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a> at
+            <caption>Votes recorded for {{? voting.dossierid }}
+                <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
+                {{??}} {{=voting.title}} {{?}} at
                 <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
             </caption>
             <colgroup>
