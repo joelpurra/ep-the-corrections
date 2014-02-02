@@ -38,10 +38,10 @@
     <td>
         <ul>
             {{? correctional }} {{~correctional :correction:correctionIndex}} {{? correction.id }}
-            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
+            <li><a href="http://parltrack.euwiki.org/mep/{{!correction.id}}">{{!correction.orig}}</a>
             </li>
             {{??}}
-            <li>{{=correction}}</li>
+            <li>{{!correction}}</li>
             {{?}} {{~}} {{?}}
         </ul>
     </td>
@@ -100,22 +100,22 @@
     </section>
 
     {{~it :voting:votingIndex}}
-    <article id="{{=voting.dossierid}}" class="voting">
+    <article id="{{!voting.dossierid}}" class="voting">
         <h2>
             {{? voting.dossierid }}
-            <a href="#{{=voting.dossierid}}" class="voting-anchor-link">∞</a>
-            <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
+            <a href="#{{!voting.dossierid}}" class="voting-anchor-link">∞</a>
+            <a href="http://parltrack.euwiki.org/dossier/{{!voting.dossierid}}">{{!voting.title}}</a>
             {{??}}
             <span class="voting-anchor-placeholder">∞</span>
-            {{=voting.title}} {{?}}
-            <time datetime="{{=voting.ts}}">{{=formatDateString(voting.ts)}}</time>
+            {{!voting.title}} {{?}}
+            <time datetime="{{!voting.ts}}">{{!formatDateString(voting.ts)}}</time>
         </h2>
 
         <table class="votes">
             <caption>Votes recorded for {{? voting.dossierid }}
-                <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
-                {{??}} {{=voting.title}} {{?}} at
-                <time datetime="{{=voting.ts}}">{{=formatDateString(voting.ts)}}</time>
+                <a href="http://parltrack.euwiki.org/dossier/{{!voting.dossierid}}">{{!voting.title}}</a>
+                {{??}} {{!voting.title}} {{?}} at
+                <time datetime="{{!voting.ts}}">{{!formatDateString(voting.ts)}}</time>
             </caption>
             <colgroup>
                 <col></col>
@@ -136,17 +136,17 @@
             <tbody>
                 <tr>
                     <th scope="row">Total count</th>
-                    <td>{{=voting.for.total}}</td>
-                    <td>{{=voting.abstain.total}}</td>
-                    <td>{{=voting.against.total}}</td>
-                    <td>{{=(voting.for.total + voting.abstain.total + voting.against.total)}}</td>
+                    <td>{{!voting.for.total}}</td>
+                    <td>{{!voting.abstain.total}}</td>
+                    <td>{{!voting.against.total}}</td>
+                    <td>{{!(voting.for.total + voting.abstain.total + voting.against.total)}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Corrected count</th>
-                    <td>{{=(voting.for.correctional ? voting.for.correctional.length : 0)}}</td>
-                    <td>{{=(voting.abstain.correctional ? voting.abstain.correctional.length : 0)}}</td>
-                    <td>{{=(voting.against.correctional ? voting.against.correctional.length : 0)}}</td>
-                    <td>{{=((voting.for.correctional ? voting.for.correctional.length : 0) + (voting.abstain.correctional ? voting.abstain.correctional.length : 0) + (voting.against.correctional ? voting.against.correctional.length : 0))}}</td>
+                    <td>{{!(voting.for.correctional ? voting.for.correctional.length : 0)}}</td>
+                    <td>{{!(voting.abstain.correctional ? voting.abstain.correctional.length : 0)}}</td>
+                    <td>{{!(voting.against.correctional ? voting.against.correctional.length : 0)}}</td>
+                    <td>{{!((voting.for.correctional ? voting.for.correctional.length : 0) + (voting.abstain.correctional ? voting.abstain.correctional.length : 0) + (voting.against.correctional ? voting.against.correctional.length : 0))}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Correctors</th>
