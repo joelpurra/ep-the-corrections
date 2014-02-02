@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+{{##def.formatTimestamp:param:
+    {{=new Date(Date.parse(param))
+        .toLocaleString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZoneName: "short"
+        })}}
+#}}
+
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>
@@ -67,7 +78,6 @@
         <hr />
     </section>
 
-    <!-- TODO: create a reusable date formatting function -->
     <!-- TODO: create a reusable vote count/correctional array formatting function -->
     <!-- TODO: reformat name display -->
     {{~it :voting:votingIndex}}
@@ -79,14 +89,14 @@
             {{??}}
             <span class="voting-anchor-placeholder">∞</span>
             {{=voting.title}} {{?}}
-            <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
+            <time datetime="{{=voting.ts}}">{{#def.formatTimestamp:voting.ts}}</time>
         </h2>
 
         <table class="votes">
             <caption>Votes recorded for {{? voting.dossierid }}
                 <a href="http://parltrack.euwiki.org/dossier/{{=voting.dossierid}}">{{=voting.title}}</a>
                 {{??}} {{=voting.title}} {{?}} at
-                <time datetime="{{=voting.ts}}">{{=new Date(Date.parse(voting.ts)).toLocaleString("en-US", {weekday: "long", year: "numeric", month: "long", day: "numeric", timeZoneName: "short"})}}</time>
+                <time datetime="{{=voting.ts}}">{{#def.formatTimestamp:voting.ts}}</time>
             </caption>
             <colgroup>
                 <col></col>
