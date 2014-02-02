@@ -87,9 +87,16 @@ var configuration = require("configvention"),
         renderTemplateToHtml(erroneousVotes, "index.html");
     },
 
+    loadJson = function(path) {
+        var resolved = resolvePath(path),
+            json = require(path);
+
+        return json
+    },
+
     init = function() {
         var erroneousVotesPath = configuration.get("erroneous-votes") || fail(null, "erroneous-votes was not defined"),
-            erroneousVotes = require(erroneousVotesPath);
+            erroneousVotes = loadJson(erroneousVotesPath);
 
         renderTemplatesToHtml(erroneousVotes);
     };
