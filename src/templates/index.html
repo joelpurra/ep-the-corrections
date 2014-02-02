@@ -16,6 +16,19 @@
     }
 }}
 
+{{##def.correctors:correctional:
+    <td>
+        <ul>
+            {{? correctional }} {{~correctional :correction:correctionIndex}} {{? correction.id }}
+            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
+            </li>
+            {{??}}
+            <li>{{=correction}}</li>
+            {{?}} {{~}} {{?}}
+        </ul>
+    </td>
+#}}
+
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>
@@ -82,8 +95,6 @@
         <hr />
     </section>
 
-    <!-- TODO: create a reusable vote count/correctional array formatting function -->
-    <!-- TODO: reformat name display -->
     {{~it :voting:votingIndex}}
     <article id="{{=voting.dossierid}}" class="voting">
         <h2>
@@ -135,36 +146,9 @@
                 </tr>
                 <tr>
                     <th scope="row">Correctors</th>
-                    <td>
-                        <ul>
-                            {{? voting.for.correctional }} {{~voting.for.correctional :correction:correctionIndex}} {{? correction.id }}
-                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
-                            </li>
-                            {{??}}
-                            <li>{{=correction}}</li>
-                            {{?}} {{~}} {{?}}
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            {{? voting.abstain.correctional }} {{~voting.abstain.correctional :correction:correctionIndex}} {{? correction.id }}
-                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
-                            </li>
-                            {{??}}
-                            <li>{{=correction}}</li>
-                            {{?}} {{~}} {{?}}
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            {{? voting.against.correctional }} {{~voting.against.correctional :correction:correctionIndex}} {{? correction.id }}
-                            <li><a href="http://parltrack.euwiki.org/mep/{{=correction.id}}">{{=correction.orig}}</a>
-                            </li>
-                            {{??}}
-                            <li>{{=correction}}</li>
-                            {{?}} {{~}} {{?}}
-                        </ul>
-                    </td>
+                    {{#def.correctors:voting.for.correctional}}
+                    {{#def.correctors:voting.abstain.correctional}}
+                    {{#def.correctors:voting.against.correctional}}
                     <td></td>
                 </tr>
             </tbody>
