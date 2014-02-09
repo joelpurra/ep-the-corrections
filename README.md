@@ -14,7 +14,7 @@ Developed during the [Europarl Hackathon](http://europarl.me/), in preparation f
 
 ## Usage
 
-`node render-templates.js --erroneous-votes="/path/to/correctionals.json"`
+`node render-templates.js --erroneous-votes="/path/to/correctionals.json --aggregates="/path/to/aggregates.json"`
 
 ### Optional arguments
 

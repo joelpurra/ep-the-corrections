@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+{{
+    function formatDateString(input) {
+        var formatted = new Date(Date.parse(input))
+            .toLocaleString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZoneName: "short"
+            });
+
+        return formatted;
+    }
+
+    function prettyInt(n){
+
+        var ints = n.toString(10),
+            output = "";
+        
+        for(var i = 0; i < ints.length; i++){
+            if(i !== 0 && i % 3 === 0){
+                output = " " + output;
+            }
+            
+            output = ints[ints.length-i-1] + output;
+        }
+
+        return output;
+    }
+}}
+
+{{## def.about:
+    <!-- TODO: re-use definitions across template files? -->
+    <p>
+        <a href="https://github.com/joelpurra/ep-the-corrections">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014 <a href="http://joelpurra.com/">Joel Purra</a>.
+    </p>
+    <ul>
+        <li>Data is made available under the <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open Database License 1.0</a>.</li>
+        <li>Any rights in individual contents of the database are licensed under the <a href="http://opendatacommons.org/licenses/dbcl/1.0/">Database Contents License 1.0</a>.</li>
+        <li>Site content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</li>
+        <li>Code licensed according to terms in each separate project.</li>
+    </ul>
+    <p>
+        Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps">open data dumps</a>, licensed under the <a href="http://opendatacommons.org/licenses/odbl/">Open Database License</a>, from <a href="http://parltrack.euwiki.org/">Parltrack</a>, to visalize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/">Members</a> of the <a href="http://www.europarl.europa.eu/">European Parliament</a>.
+    </p>
+    <p>
+        Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
+    </p>
+#}}
+
+{{## def.aggregateRow:aggregate:
+    <td>
+        <time datetime="{{! aggregate["date-range"].oldest }}">{{! formatDateString(aggregate["date-range"].oldest) }}</time>
+    </td>
+    <td>
+        <time datetime="{{! aggregate["date-range"].newest }}">{{! formatDateString(aggregate["date-range"].newest) }}</time>
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate.votings) }}
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate.votes) }}
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate["corrected-votes"]) }}
+    </td>
+#}}
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+        Corrected votes by the Members of the European Parliament
+    </title>
+
+    <style>
+    body {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    header {
+        margin-top: 2em;
+        margin-bottom: 5em;
+    }
+    footer {
+        margin-top: 5em;
+        margin-bottom: 2em;
+    }
+    h2 time {
+        font-size: small;
+    }
+    table {
+        width: 100%;
+    }
+    table col:nth-of-type(odd) {
+        background-color: #f6f6f6;
+    }
+    table col:nth-of-type(even) {
+        background-color: #f0f0f0;
+    }
+    table td, table th {
+        vertical-align: top;
+        margin: 0;
+    }
+    table td.number {
+        text-align: right;
+    }
+    </style>
+
+    <style>
+    table.metadata col:first-of-type {
+        width: 20%;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Corrected votes by the Members of the European Parliament
+        </h1>
+        <hr />
+    </header>
+
+    <article>
+<!-- TODO: write a summary
+        <h2>
+            Summary
+        </h2>
+-->
+        <h2>
+            Metadata
+        </h2>
+
+        <table class="metadata">
+            <caption>
+                Metadata about the dataset
+            </caption>
+            <colgroup>
+                <col></col>
+                <col></col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">Key</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Generated at</th>
+                    <td><time datetime="{{! it["generated-at"] }}">{{! formatDateString(it["generated-at"]) }}</time></td>
+                </tr>
+                <tr>
+                    <th scope="row">Source filename</th>
+                    <td>{{! it.filename }}</td>
+                </tr>
+<!-- TODO: make sure the EP term is exported
+                <tr>
+                    <th scope="row">EP Term</th>
+                    <td>{{! it.term }}</td>
+                </tr>
+-->
+            </tbody>
+        </table>
+
+        <h2>
+            Aggregates
+        </h2>
+
+        <table class="aggregates">
+            <caption>
+                Aggregate data from dataset
+            </caption>
+            <colgroup>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Votings</th>
+                    <th scope="col">Oldest</th>
+                    <th scope="col">Newest</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Votes</th>
+                    <th scope="col">Corrections</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">All</th>
+                    {{# def.aggregateRow:it["complete-dataset"] }}
+                </tr>
+                <tr>
+                    <th scope="row">With corrections</th>
+                    {{# def.aggregateRow:it["with-corrections"] }}
+                </tr>
+            </tbody>
+        </table>
+    </article>
+    <footer>
+        <hr />
+        {{# def.about }}
+    </footer>
+</body>
+
+</html>

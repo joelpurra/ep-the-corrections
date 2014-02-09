@@ -1,4 +1,12 @@
 {
     "templates-folder": "templates/",
-    "output-folder": "output/"
+    "output-folder": "output/",
+    "templates": {
+        "index.html": {
+            "data": "aggregates"
+        },
+        "erroneous-votes.html": {
+            "data": "erroneous-votes"
+        }
+    }
 }
