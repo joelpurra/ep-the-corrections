@@ -74,6 +74,8 @@ var configuration = require("configvention"),
         getTemplate(templateFilename, function(error, template) {
             failOrNot(error);
 
+            doT.templateSettings.useParams = /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*((?:(?:[\w$]+|\[(?:\"[^\"]+\"|\'[^\']+\')\]|\{[^\}]+\})\.?)*)/g;
+
             var compiledTemplate = doT.template(template),
                 output = compiledTemplate(input);
 
@@ -83,22 +85,37 @@ var configuration = require("configvention"),
         });
     },
 
-    renderTemplatesToHtml = function(erroneousVotes) {
-        renderTemplateToHtml(erroneousVotes, "index.html");
+    renderTemplatesToHtml = function(json, templateFilename) {
+        renderTemplateToHtml(json, templateFilename);
     },
 
     loadJson = function(path) {
         var resolved = resolvePath(path),
-            json = require(path);
+            json = require(resolved);
 
-        return json
+        return json;
+    },
+
+    renderFromConfiguration = function(templateFilename, templateConfiguration) {
+        var dataConfigurationName = templateConfiguration.data,
+            path = configuration.get(dataConfigurationName) || fail(null, "The configuration for " + dataConfigurationName + " was not defined."),
+            json = loadJson(path);
+
+        renderTemplatesToHtml(json, templateFilename);
+    },
+
+    renderFromConfigurations = function() {
+        var templatesConfiguration = configuration.get("templates");
+
+        Object.keys(templatesConfiguration).forEach(function(templateFilename, index) {
+            var templateConfiguration = templatesConfiguration[templateFilename];
+
+            renderFromConfiguration(templateFilename, templateConfiguration);
+        });
     },
 
     init = function() {
-        var erroneousVotesPath = configuration.get("erroneous-votes") || fail(null, "erroneous-votes was not defined"),
-            erroneousVotes = loadJson(erroneousVotesPath);
-
-        renderTemplatesToHtml(erroneousVotes);
+        renderFromConfigurations();
     };
 
 init();
