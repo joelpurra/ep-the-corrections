@@ -17,6 +17,7 @@
 }}
 
 {{## def.about:
+    <!-- TODO: re-use definitions across template files? -->
     <p>
         <a href="https://github.com/joelpurra/ep-the-corrections">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014 <a href="http://joelpurra.com/">Joel Purra</a>.
     </p>
@@ -54,27 +55,45 @@
     </title>
 
     <style>
+    body {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    header {
+        margin-top: 2em;
+        margin-bottom: 5em;
+    }
+    footer {
+        margin-top: 5em;
+        margin-bottom: 2em;
+    }
     h2 time {
         font-size: small;
     }
-    table.votes {
+    table {
         width: 100%;
     }
+    table col:nth-of-type(odd) {
+        background-color: #f6f6f6;
+    }
+    table col:nth-of-type(even) {
+        background-color: #f0f0f0;
+    }
+    table td, table th {
+        vertical-align: top;
+        margin: 0;
+    }
+    table td.number {
+        text-align: right;
+    }
+    </style>
+
+    <style>
     table.votes col {
         width: 26.6667%;
     }
     table.votes col:first-of-type, table.votes col:last-of-type {
         width: 10%;
-    }
-    table.votes col:nth-of-type(odd) {
-        background-color: #f6f6f6;
-    }
-    table.votes col:nth-of-type(even) {
-        background-color: #f0f0f0;
-    }
-    table.votes td, table.votes th {
-        vertical-align: top;
-        margin: 0;
     }
     .voting .voting-anchor-placeholder {
         visibility: hidden;
@@ -90,14 +109,14 @@
 </head>
 
 <body>
-    <h1>
-        Corrected votes by the Members of the European Parliament
-    </h1>
+    <header>
+        <h1>
+            Corrected votes by the Members of the European Parliament
+        </h1>
 
-    <section>
         {{# def.about }}
         <hr />
-    </section>
+    </header>
 
     {{~ it : voting : votingIndex }}
     <article id="{{! voting.dossierid }}" class="voting">
