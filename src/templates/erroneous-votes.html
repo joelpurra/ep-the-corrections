@@ -53,7 +53,7 @@
     <title>
         Corrected votes by the Members of the European Parliament
     </title>
-    
+
     <script>
     (function() {
       try {
@@ -115,9 +115,6 @@
     table.votes col:first-of-type, table.votes col:last-of-type {
         width: 10%;
     }
-    .voting .voting-anchor-placeholder {
-        visibility: hidden;
-    }
     .voting .voting-anchor-link {
         visibility: hidden;
         text-decoration: none;
@@ -139,13 +136,12 @@
     </header>
 
     {{~ it : voting : votingIndex }}
-    <article id="{{! voting.dossierid }}" class="voting">
+    <article id="{{! voting.ts }}" class="voting">
         <h2>
+            <a href="#{{! voting.ts }}" class="voting-anchor-link">∞</a>
             {{? voting.dossierid }}
-            <a href="#{{! voting.dossierid }}" class="voting-anchor-link">∞</a>
             <a href="http://parltrack.euwiki.org/dossier/{{! voting.dossierid }}">{{! voting.title }}</a>
             {{??}}
-            <span class="voting-anchor-placeholder">∞</span>
             {{! voting.title }} {{?}}
             <time datetime="{{! voting.ts }}">{{! formatDateString(voting.ts) }}</time>
         </h2>
