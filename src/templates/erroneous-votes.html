@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 
 {{
     function formatDateString(input) {
@@ -53,6 +53,17 @@
     <title>
         Corrected votes by the Members of the European Parliament
     </title>
+    
+    <script>
+    (function() {
+      try {
+        var h = document.getElementsByTagName("html")[0];
+        h.className = ("" + h.className).replace("no-js", "js");
+      }
+      catch(e) {
+      }
+    }());
+    </script>
 
     <style>
     body {
@@ -85,6 +96,15 @@
     }
     table td.number {
         text-align: right;
+    }
+    ul.no-bullets li, ol.no-bullets li {
+        list-style-type: none;
+    }
+    html.no-js .js-only {
+        display: none;
+    }
+    html.js .no-js-only {
+        display: none;
     }
     </style>
 

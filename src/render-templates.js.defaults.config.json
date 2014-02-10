@@ -7,6 +7,9 @@
         },
         "erroneous-votes.html": {
             "data": "erroneous-votes"
+        },
+        "grouped-by-mep.html": {
+            "data": "grouped-by-mep"
         }
     }
 }
