@@ -1,0 +1,30 @@
+{{
+	/* TODO: create <time> template */
+    function formatDateString(input) {
+        var formatted = new Date(Date.parse(input))
+            .toLocaleString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZoneName: "short"
+            });
+
+        return formatted;
+    }
+
+    function prettyInt(n) {
+        var ints = n.toString(10),
+            output = "";
+        
+        for (var i = 0; i < ints.length; i++) {
+            if(i !== 0 && i % 3 === 0){
+                output = " " + output;
+            }
+            
+            output = ints[ints.length-i-1] + output;
+        }
+
+        return output;
+    }
+}}

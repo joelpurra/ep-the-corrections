@@ -1,9 +1,12 @@
 "use strict";
 
+/*global require: true, process: true, console: true */
+
 var configuration = require("configvention"),
     path = require("path"),
     filesystem = require("fs"),
     doT = require("dot"),
+    doTs,
 
     fail = function(error, msg) {
         var scriptPath = process.argv[1],
@@ -44,9 +47,9 @@ var configuration = require("configvention"),
         filesystem.writeFile(path, contents, callback);
     },
 
-    getTemplatePath = function(filename) {
+    getTemplatesPath = function() {
         var templateDirectoryPath = configuration.get("templates-folder"),
-            resolved = resolvePath(templateDirectoryPath, filename);
+            resolved = resolvePath(templateDirectoryPath);
 
         return resolved;
     },
@@ -58,10 +61,21 @@ var configuration = require("configvention"),
         return resolved;
     },
 
-    getTemplate = function(filename, callback) {
-        var path = getTemplatePath(filename);
+    initTemplates = function() {
+        var templatesPath = getTemplatesPath();
 
-        readFile(path, callback);
+        doTs = doT.process({
+            path: templatesPath,
+            templateSettings: {
+                useParams: /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*((?:[_a-z$][\w$]+)(?:\.[_a-z$][\w$]+|\[(?:(?:[_a-z$][\w$]+)|\d+|(["'])(?![^\\]\4).+\4)\])*)\s*$/i
+            }
+        });
+    },
+
+    getTemplate = function(templateFilename) {
+        var basename = path.basename(templateFilename, ".html");
+
+        return doTs[basename];
     },
 
     writeOutput = function(filename, contents, callback) {
@@ -71,17 +85,11 @@ var configuration = require("configvention"),
     },
 
     renderTemplateToHtml = function(input, templateFilename) {
-        getTemplate(templateFilename, function(error, template) {
+        var compiledTemplate = getTemplate(templateFilename),
+            output = compiledTemplate(input);
+
+        writeOutput(templateFilename, output, function(error) {
             failOrNot(error);
-
-            doT.templateSettings.useParams = /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*((?:[_a-z$][\w$]+)(?:\.[_a-z$][\w$]+|\[(?:(?:[_a-z$][\w$]+)|\d+|(["'])(?![^\\]\4).+\4)\])*)\s*$/i;
-
-            var compiledTemplate = doT.template(template),
-                output = compiledTemplate(input);
-
-            writeOutput(templateFilename, output, function(error) {
-                failOrNot(error);
-            });
         });
     },
 
@@ -98,7 +106,7 @@ var configuration = require("configvention"),
 
     renderFromConfiguration = function(templateFilename, templateConfiguration) {
         var dataConfigurationName = templateConfiguration.data,
-            inputPath =  configuration.get("input-folder") || fail(null, "The configuration for input-folder was not defined."),
+            inputPath = configuration.get("input-folder") || fail(null, "The configuration for input-folder was not defined."),
             relativePath = configuration.get(dataConfigurationName) || fail(null, "The configuration for " + dataConfigurationName + " was not defined."),
             path = resolvePath(inputPath, relativePath),
             json = loadJson(path);
@@ -109,7 +117,7 @@ var configuration = require("configvention"),
     renderFromConfigurations = function() {
         var templatesConfiguration = configuration.get("templates");
 
-        Object.keys(templatesConfiguration).forEach(function(templateFilename, index) {
+        Object.keys(templatesConfiguration).forEach(function(templateFilename) {
             var templateConfiguration = templatesConfiguration[templateFilename];
 
             renderFromConfiguration(templateFilename, templateConfiguration);
@@ -117,6 +125,7 @@ var configuration = require("configvention"),
     },
 
     init = function() {
+        initTemplates();
         renderFromConfigurations();
     };
 

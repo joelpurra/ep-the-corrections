@@ -1,0 +1,205 @@
+{{
+    var KeyCounterObjectHelper = {};
+
+    KeyCounterObjectHelper.max = function(obj) {
+        var maxValue = Number.MIN_VALUE,
+            maxKey = null,
+            maxObj;
+
+        Object.keys(obj).forEach(function(key) {
+            var value = obj[key];
+
+            if (maxValue < value) {
+                maxValue = value;
+                maxKey = key;
+            }
+        });
+
+        maxObj = {
+            key: maxKey,
+            value: maxValue
+        };
+
+        return maxObj;
+    };
+
+    var ArrayHelper = {};
+
+    ArrayHelper.except = function(arr, obj) {
+        var filtered = arr.filter(function(val) {
+            return val !== obj;
+        });
+
+        return filtered;
+    };
+
+    function getCorrectionsMax(meps) {
+        var max = Number.MIN_VALUE;
+
+        meps.forEach(function(mep){
+            max = Math.max(max, mep.corrections);
+        });
+
+        return max;
+    }
+
+    function getCorrectionsPercentage(corrections) {
+        var pct = Math.floor((corrections/maxCorrections)*100).toString();
+
+        return pct;
+    }
+
+    var maxCorrections = getCorrectionsMax(it);
+}}
+
+{{# def.header }}
+
+<style scoped="scoped">
+#meps.hide-real .mep.real {
+    display: none;
+}
+#meps.hide-faked .mep.faked {
+    display: none;
+}
+table th.name {
+    text-align: left;
+}
+table col:first-of-type {
+    width: 20%;
+}
+ul.alt-names {
+    margin: 0;
+    padding: 0;
+}
+ul.alt-names li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+ul.alt-names li:before {
+    content: ", ";
+}
+ul.alt-names li:first-of-type:before {
+    content: none;
+}
+.graph-bar-gradient-horizontal
+{
+    background-image: -moz-linear-gradient(0% 0deg, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.2));
+    background-image: -webkit-gradient(linear, left center, right center, from(rgba(255, 0, 0, 0.4)), to(rgba(255, 0, 0, 0.2)));
+
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    /* Override with style="background-size: XXX% 100%;" */
+    background-size: 50% 100%;
+}
+</style>
+
+<!-- TODO: write a summary
+<h2>
+    Summary
+</h2>
+-->
+<h2>
+    MEP list
+</h2>
+
+<h3>
+    Names without a proper MEP database ID
+</h3>
+<p>
+    This list also contains some MEP names which were not properly linked with a MEP database ID. This leads to some skewing of the data, but hopefully not too much.
+</p>
+<ul class="no-bullets js-only">
+    <li><label><input type="checkbox" id="show-real" checked="checked" /> Show MEP entires with a proper MEP database ID</label></li>
+    <li><label><input type="checkbox" id="show-faked" checked="checked" /> Show MEP entires that do not have a proper MEP database ID</label></li>
+</ul>
+
+<table id="meps">
+    <caption>
+        MEPs (grouped by database ID or name) who have made corrections, ordered by number of corrections in ascending order
+    </caption>
+    <colgroup>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+        <col></col>
+    </colgroup>
+    <thead>
+        <tr>
+            <th scope="col">Corrections</th>
+            <th scope="col">MEP</th>
+            <th scope="col">Alternate names</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{~ it : mep : mepIndex }}
+        <tr class="mep {{! mep.faked ? "faked" : "real" }}">
+            <td class="number graph-bar-gradient-horizontal" style="background-size: {{! getCorrectionsPercentage(mep.corrections) }}% 100%;">
+                {{! mep.corrections }}
+            </td>
+            <th scope="row" class="name">
+            {{? !mep.faked }}
+                <a href="http://parltrack.euwiki.org/mep/{{! mep.id }}">
+                    {{! KeyCounterObjectHelper.max(mep.names).key }}
+                </a>
+            {{??}}
+                {{! KeyCounterObjectHelper.max(mep.names).key }}
+            {{?}}
+            </th>
+            <td>
+            {{? Object.keys(mep.names).length > 1 }}
+                <ul class="alt-names">
+                {{~ ArrayHelper.except(Object.keys(mep.names), KeyCounterObjectHelper.max(mep.names).key) : altName : altNameIndex }}<li>{{! altName }}</li>{{~}}
+                </ul>
+            {{?}}
+            </td>
+        </tr>
+        {{~}}
+    </tbody>
+</table>
+
+<script>
+(function(){
+    var meps = document.getElementById("meps"),
+        showReal = document.getElementById("show-real"),
+        showFaked = document.getElementById("show-faked"),
+        useClass = function(element, cls, enable) {
+            enable = enable === undefined ? true : !!enable;
+
+            if (enable) {
+                element.classList.add(cls);
+            }
+            else
+            {
+                element.classList.remove(cls);
+            }
+        },
+        useClassIfChecked = function(element, cls) {
+            var fn = function(e){
+                useClass(element, cls, e.target.checked);
+            };
+
+            return fn;
+        },
+        useClassIfNotChecked = function(element, cls) {
+            var fn = function(e){
+                console.warn([this, useClass]);
+                useClass(element, cls, !e.target.checked);
+            };
+
+            return fn;
+        },
+        init = function() {
+            showReal.addEventListener("change", useClassIfNotChecked(meps, "hide-real"));
+            showFaked.addEventListener("change", useClassIfNotChecked(meps, "hide-faked"));
+        };
+
+    init();
+}());
+</script>
+
+{{# def.footer }}

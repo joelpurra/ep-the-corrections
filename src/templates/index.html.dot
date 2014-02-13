@@ -1,0 +1,134 @@
+{{## def.aggregateRow:aggregate:
+    <td>
+        <time datetime="{{! aggregate["date-range"].oldest }}">{{! formatDateString(aggregate["date-range"].oldest) }}</time>
+    </td>
+    <td>
+        <time datetime="{{! aggregate["date-range"].newest }}">{{! formatDateString(aggregate["date-range"].newest) }}</time>
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate.votings) }}
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate.votes) }}
+    </td>
+    <td class="number">
+        {{! prettyInt(aggregate["corrected-votes"]) }}
+    </td>
+#}}
+
+{{# def.header }}
+
+<style scoped="scoped">
+    table.metadata col:first-of-type {
+        width: 20%;
+    }
+</style>
+
+<!-- TODO: write a summary
+<section>
+    <h2>
+        Summary
+    </h2>
+    <p>
+
+    </p>
+</section>
+-->
+
+<section>
+    <h2>
+        Metadata
+    </h2>
+
+    <table class="metadata">
+        <caption>
+            Metadata about the dataset
+        </caption>
+        <colgroup>
+            <col></col>
+            <col></col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Generated at</th>
+                <td><time datetime="{{! it["generated-at"] }}">{{! formatDateString(it["generated-at"]) }}</time></td>
+            </tr>
+            <tr>
+                <th scope="row">Source filename</th>
+                <td>{{! it.filename }}</td>
+            </tr>
+            <!-- TODO: make sure the EP term is exported
+            <tr>
+                <th scope="row">EP Term</th>
+                <td>{{! it.term }}</td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>
+        Aggregates
+    </h2>
+
+    <table class="aggregates">
+        <caption>
+            Aggregate data from dataset
+        </caption>
+        <colgroup>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+            <col></col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Votings</th>
+                <th scope="col">Oldest</th>
+                <th scope="col">Newest</th>
+                <th scope="col">Count</th>
+                <th scope="col">Votes</th>
+                <th scope="col">Corrections</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">All</th>
+                {{# def.aggregateRow:it["complete-dataset"] }}
+            </tr>
+            <tr>
+                <th scope="row">With corrections</th>
+                {{# def.aggregateRow:it["with-corrections"] }}
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>
+        Disclaimer
+    </h2>
+
+    <p>
+        <em class="warning">The data has not yet been verified to be correct!</em>
+    </p>
+
+    <p>
+        While some of the results of the findings here are very interesting, they have not yet been properly verified. They could be wrong, they could be right. If you can help everyone out by verifying that the data from Parltrack, and the scripting in the open source projects, is correct - please do! There is currently (2014-01-28) work in progress to require machine-readable sources of data straight from the European Parliament, but until that has been resolved, keep in mind that this data is based upon parsing PDF-files meant for human eyes and paper printer consumption.
+    </p>
+
+    <p>
+        The data has not been filtered to reflect any opinions on votings, voters or votes. The data has only been reduced to include only votings with recorded corrections.
+    </p>
+</section>
+
+{{# def.footer }}
