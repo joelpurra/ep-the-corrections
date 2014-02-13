@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js">
 
+<!-- TODO: create <time> template -->
 {{
     function formatDateString(input) {
         var formatted = new Date(Date.parse(input))
@@ -15,12 +16,11 @@
         return formatted;
     }
 
-    function prettyInt(n){
-
+    function prettyInt(n) {
         var ints = n.toString(10),
             output = "";
         
-        for(var i = 0; i < ints.length; i++){
+        for (var i = 0; i < ints.length; i++) {
             if(i !== 0 && i % 3 === 0){
                 output = " " + output;
             }
@@ -74,22 +74,41 @@
     <title>
         Corrected votes by the Members of the European Parliament
     </title>
-    
+
     <script>
     (function() {
-      try {
-        var h = document.getElementsByTagName("html")[0];
-        h.className = ("" + h.className).replace("no-js", "js");
-      }
-      catch(e) {
-      }
+        try {
+            var h = document.getElementsByTagName("html")[0];
+            h.className = ("" + h.className).replace("no-js", "js");
+        } catch (e) {}
     }());
     </script>
 
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Quando" />
     <style>
     body {
         padding-left: 10%;
         padding-right: 10%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: Quando, Helvetica, Verdana, sans-serif;
+    }
+    h2 {
+        margin-top: 2em;
+        border-bottom: 1px solid lightgrey;
+    }
+    .warning:before {
+        content:"Warning";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 0.6em;
+        font-family: Helvetica, Verdana, sans-serif;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+        margin-right: 0.5em;
+        color: #514721;
+        background-color: #FFF6BF;
+        border: 1px solid #FFD324;
     }
     header {
         margin-top: 2em;
@@ -121,6 +140,20 @@
     ul.no-bullets li, ol.no-bullets li {
         list-style-type: none;
     }
+    ul.inline-menu {
+        margin: 0;
+        padding: 0;
+    }
+    ul.inline-menu li {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+    ul.inline-menu li:before {
+        content: " \00B7 ";
+        margin-left: 0.3em;
+        margin-right: 0.3em;
+    }
     html.no-js .js-only {
         display: none;
     }
@@ -141,88 +174,124 @@
         <h1>
             Corrected votes by the Members of the European Parliament
         </h1>
+        <nav>
+            <ul class="inline-menu">
+                <li><a href="./">About this dataset</a></li>
+                <li><a href="erroneous-votes.html">Votings with erroneous/corrected votes</a></li>
+                <li><a href="grouped-by-mep.html">MEPs with corrected votes</a></li>
+                <li><a href="http://joelpurra.com/r/euparl">Project page</a></li>
+            </ul>
+        </nav>
         <hr />
     </header>
 
     <article>
-<!-- TODO: write a summary
-        <h2>
-            Summary
-        </h2>
--->
-        <h2>
-            Metadata
-        </h2>
+        <!-- TODO: write a summary
+        <section>
+            <h2>
+                Summary
+            </h2>
+            <p>
 
-        <table class="metadata">
-            <caption>
-                Metadata about the dataset
-            </caption>
-            <colgroup>
-                <col></col>
-                <col></col>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th scope="col">Key</th>
-                    <th scope="col">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Generated at</th>
-                    <td><time datetime="{{! it["generated-at"] }}">{{! formatDateString(it["generated-at"]) }}</time></td>
-                </tr>
-                <tr>
-                    <th scope="row">Source filename</th>
-                    <td>{{! it.filename }}</td>
-                </tr>
-<!-- TODO: make sure the EP term is exported
-                <tr>
-                    <th scope="row">EP Term</th>
-                    <td>{{! it.term }}</td>
-                </tr>
--->
-            </tbody>
-        </table>
+            </p>
+        </section>
+        -->
 
-        <h2>
-            Aggregates
-        </h2>
+        <section>
+            <h2>
+                Metadata
+            </h2>
 
-        <table class="aggregates">
-            <caption>
-                Aggregate data from dataset
-            </caption>
-            <colgroup>
-                <col></col>
-                <col></col>
-                <col></col>
-                <col></col>
-                <col></col>
-                <col></col>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>Votings</th>
-                    <th scope="col">Oldest</th>
-                    <th scope="col">Newest</th>
-                    <th scope="col">Count</th>
-                    <th scope="col">Votes</th>
-                    <th scope="col">Corrections</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">All</th>
-                    {{# def.aggregateRow:it["complete-dataset"] }}
-                </tr>
-                <tr>
-                    <th scope="row">With corrections</th>
-                    {{# def.aggregateRow:it["with-corrections"] }}
-                </tr>
-            </tbody>
-        </table>
+            <table class="metadata">
+                <caption>
+                    Metadata about the dataset
+                </caption>
+                <colgroup>
+                    <col></col>
+                    <col></col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">Key</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Generated at</th>
+                        <td><time datetime="{{! it["generated-at"] }}">{{! formatDateString(it["generated-at"]) }}</time></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Source filename</th>
+                        <td>{{! it.filename }}</td>
+                    </tr>
+                    <!-- TODO: make sure the EP term is exported
+                    <tr>
+                        <th scope="row">EP Term</th>
+                        <td>{{! it.term }}</td>
+                    </tr>
+                    -->
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>
+                Aggregates
+            </h2>
+
+            <table class="aggregates">
+                <caption>
+                    Aggregate data from dataset
+                </caption>
+                <colgroup>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                    <col></col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Votings</th>
+                        <th scope="col">Oldest</th>
+                        <th scope="col">Newest</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Votes</th>
+                        <th scope="col">Corrections</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">All</th>
+                        {{# def.aggregateRow:it["complete-dataset"] }}
+                    </tr>
+                    <tr>
+                        <th scope="row">With corrections</th>
+                        {{# def.aggregateRow:it["with-corrections"] }}
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>
+                Disclaimer
+            </h2>
+
+            <p>
+                <em class="warning">The data has not yet been verified to be correct!</em>
+            </p>
+
+            <p>
+                While some of the results of the findings here are very interesting, they have not yet been properly verified. They could be wrong, they could be right. If you can help everyone out by verifying that the data from Parltrack, and the scripting in the open source projects, is correct - please do! There is currently (2014-01-28) work in progress to require machine-readable sources of data straight from the European Parliament, but until that has been resolved, keep in mind that this data is based upon parsing PDF-files meant for human eyes and paper printer consumption.
+            </p>
+
+            <p>
+                The data has not been filtered to reflect any opinions on votings, voters or votes. The data has only been reduced to include only votings with recorded corrections.
+            </p>
+        </section>
     </article>
     <footer>
         <hr />
