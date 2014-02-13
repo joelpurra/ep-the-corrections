@@ -98,7 +98,9 @@ var configuration = require("configvention"),
 
     renderFromConfiguration = function(templateFilename, templateConfiguration) {
         var dataConfigurationName = templateConfiguration.data,
-            path = configuration.get(dataConfigurationName) || fail(null, "The configuration for " + dataConfigurationName + " was not defined."),
+            inputPath =  configuration.get("input-folder") || fail(null, "The configuration for input-folder was not defined."),
+            relativePath = configuration.get(dataConfigurationName) || fail(null, "The configuration for " + dataConfigurationName + " was not defined."),
+            path = resolvePath(inputPath, relativePath),
             json = loadJson(path);
 
         renderTemplatesToHtml(json, templateFilename);

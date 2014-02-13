@@ -19,14 +19,16 @@ $ node render-templates.js <args>
 ```
 
 ### Required arguments
-- `--erroneous-votes="/path/to/correctionals.json"`
-- `--aggregates="/path/to/aggregates.json"`
-- `--grouped-by-mep="/path/to/correctionals.grouped-by-mep.json"`
+
+- `--input-folder="/path/to/data/"`
 
 ### Optional arguments
 
-- `--templates-folder="templates/"`
-- `--output-folder="output/"`
+- `--erroneous-votes="correctionals.json"` (relative to `--input-folder`)
+- `--aggregates="aggregates.json"` (relative to `--input-folder`)
+- `--grouped-by-mep="correctionals.grouped-by-mep.json"` (relative to `--input-folder`)
+- `--templates-folder="templates/"` (relative to `src/`)
+- `--output-folder="output/"` (relative to `src/`)
 
 ### Configuration
 

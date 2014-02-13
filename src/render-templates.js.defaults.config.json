@@ -1,4 +1,7 @@
 {
+    "erroneous-votes": "correctionals.json",
+    "aggregates": "aggregates.json",
+    "grouped-by-mep": "correctionals.grouped-by-mep.json",
     "templates-folder": "templates/",
     "output-folder": "output/",
     "templates": {
