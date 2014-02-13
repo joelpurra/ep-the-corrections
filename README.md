@@ -1,5 +1,7 @@
 # [ep-the-corrections](https://github.com/joelpurra/ep-the-corrections)
 
+For more background information, see the [projects related to the European Parliament](http://joelpurra.com/r/euparl) page.
+
 Using data from [ep-erroneous-votes](https://github.com/joelpurra/ep-erroneous-votes), based on [open data dumps](http://parltrack.euwiki.org/dumps) from [Parltrack](http://parltrack.euwiki.org/), to visalize erroneous, and subsequently corrected, votes by [Members](http://www.europarl.europa.eu/meps/) of the [European Parliament](http://www.europarl.europa.eu/).
 
 Developed during the [Europarl Hackathon](http://europarl.me/), in preparation for the [European elections 2014](http://www.elections2014.eu/).
