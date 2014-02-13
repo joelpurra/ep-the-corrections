@@ -40,9 +40,10 @@ It's also possible to create a configuration file, `src/render-templates.js.conf
 
 ## Todo
 
-- Write more background information and in-depth explanations in the rendered output.
-- Create reusable [doT](http://olado.github.io/doT/) definitions, scripts.
-- Create [jekyll](http://jekyllrb.com/) templates for the surrounding page stuff, like headers, footers, shared CSS.
+&#9744; Write more background information and in-depth explanations in the rendered output.  
+&#9744; Add links to the original data file from the generated files.  
+&#9745; Create reusable [doT](http://olado.github.io/doT/) definitions, scripts.  
+&#9745; ~~Create [jekyll](http://jekyllrb.com/) templates for the surrounding page stuff, like headers, footers, shared CSS.~~  
 
 
 
