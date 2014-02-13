@@ -74,7 +74,7 @@ var configuration = require("configvention"),
         getTemplate(templateFilename, function(error, template) {
             failOrNot(error);
 
-            doT.templateSettings.useParams = /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*((?:(?:[\w$]+|\[(?:\"[^\"]+\"|\'[^\']+\')\]|\{[^\}]+\})\.?)*)/g;
+            doT.templateSettings.useParams = /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*((?:[_a-z$][\w$]+)(?:\.[_a-z$][\w$]+|\[(?:(?:[_a-z$][\w$]+)|\d+|(["'])(?![^\\]\4).+\4)\])*)\s*$/i;
 
             var compiledTemplate = doT.template(template),
                 output = compiledTemplate(input);
