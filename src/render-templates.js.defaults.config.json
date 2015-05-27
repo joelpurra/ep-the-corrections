@@ -1,7 +1,7 @@
 {
-    "erroneous-votes": "correctionals.json",
+    "erroneous-votes": "ep_votes.term.votings-with-correctionals.mapped.sorted.json",
     "aggregates": "aggregates.json",
-    "grouped-by-mep": "correctionals.grouped-by-mep.json",
+    "grouped-by-mep": "ep_votes.term.votings-with-correctionals.mapped.mep-objects.corrections.grouped-by-mep.json",
     "templates-folder": "templates/",
     "output-folder": "output/",
     "templates": {
