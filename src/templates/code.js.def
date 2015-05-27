@@ -13,6 +13,18 @@
         return formatted;
     }
 
+    function formatDateStringShort(input) {
+        var formatted = new Date(Date.parse(input))
+            .toISOString()
+            .split("T")[0];
+
+        return formatted;
+    }
+
+    function prettyPercentage(a, b) {
+        return "" + (Math.floor((a/b) * 1000)/10) + "%";
+    }
+
     function prettyInt(n) {
         var ints = n.toString(10),
             output = "";

@@ -24,16 +24,15 @@
     }
 </style>
 
-<!-- TODO: write a summary
 <section>
     <h2>
-        Summary
+        Summary (term {{! it.term }})
     </h2>
     <p>
-
+        This is an analysis of a total of <strong>{{! prettyInt(it["complete-dataset"].votings) }}</strong> recorded and published votings in the European Parliament during <strong>term {{! it.term }}</strong>, with a total of <strong>{{! prettyInt(it["complete-dataset"].votes) }}</strong> votes made by the Members of the European Parliament <strong>between {{! formatDateStringShort(it["complete-dataset"]["date-range"].oldest) }} and {{! formatDateStringShort(it["complete-dataset"]["date-range"].newest) }}</strong>. Out of these, <strong>{{! prettyInt(it["with-corrections"].votings) }}</strong> (<strong>{{! prettyPercentage(it["with-corrections"].votings, it["complete-dataset"].votings) }}</strong>) votings had at least one recorded correction, with a total of <strong>{{! prettyInt(it["with-corrections"]["corrected-votes"]) }}</strong> (<strong>{{! prettyPercentage(it["with-corrections"]["corrected-votes"], it["complete-dataset"].votes) }}</strong>).
     </p>
 </section>
--->
+
 
 <section>
     <h2>
@@ -56,19 +55,13 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">Generated at</th>
-                <td><time datetime="{{! it["generated-at"] }}">{{! formatDateString(it["generated-at"]) }}</time></td>
-            </tr>
-            <tr>
-                <th scope="row">Source filename</th>
-                <td>{{! it.filename }}</td>
-            </tr>
-            <!-- TODO: make sure the EP term is exported
-            <tr>
                 <th scope="row">EP Term</th>
                 <td>{{! it.term }}</td>
             </tr>
-            -->
+            <tr>
+                <th scope="row">Generated at</th>
+                <td><time datetime="{{! it["ep_votes.term"]["generated-at"] }}">{{! formatDateString(it["ep_votes.term"]["generated-at"]) }}</time></td>
+            </tr>
         </tbody>
     </table>
 </section>
