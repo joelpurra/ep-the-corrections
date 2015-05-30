@@ -49,6 +49,6 @@ It's also possible to create a configuration file, `src/render-templates.js.conf
 
 ## License
 
-Copyright (c) 2014, [Joel Purra](http://joelpurra.com/) All rights reserved.
+Copyright (c) 2014, 2015, [Joel Purra](http://joelpurra.com/) All rights reserved.
 
 When using ep-the-corrections, comply to the [GNU Affero General Public License 3.0 (AGPL-3.0)](https://en.wikipedia.org/wiki/Affero_General_Public_License). Please see the LICENSE file for details.
