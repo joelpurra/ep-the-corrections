@@ -11,7 +11,7 @@
 			<li>Code licensed according to terms in each separate project.</li>
 		</ul>
 		<p>
-			Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps" rel="external">open data dumps</a>, licensed under the <a href="http://opendatacommons.org/licenses/odbl/" rel="external license">Open Database License</a>, from <a href="http://parltrack.euwiki.org/" rel="external">Parltrack</a>, to visalize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/" rel="external">Members</a> of the <a href="http://www.europarl.europa.eu/" rel="external">European Parliament</a>.
+			Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps" rel="external">open data dumps</a> from <a href="http://parltrack.euwiki.org/" rel="external">Parltrack</a> licensed under the <a href="http://opendatacommons.org/licenses/odbl/" rel="external license">Open Database License</a>, to visualize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/" rel="external">Members</a> of the <a href="http://www.europarl.europa.eu/" rel="external">European Parliament</a>.
 		</p>
 		<p>
 			Part of the <a href="http://joelpurra.com/r/euparl" rel="home">projects related to the European Parliament</a>. Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
