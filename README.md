@@ -40,15 +40,15 @@ It's also possible to create a configuration file, `src/render-templates.js.conf
 
 ## Todo
 
-&#9744; Write more background information and in-depth explanations in the rendered output.  
-&#9744; Add links to the original data file from the generated files.  
-&#9745; Create reusable [doT](http://olado.github.io/doT/) definitions, scripts.  
-&#9745; ~~Create [jekyll](http://jekyllrb.com/) templates for the surrounding page stuff, like headers, footers, shared CSS.~~  
+&#9744; Write more background information and in-depth explanations in the rendered output.
+&#9744; Add links to the original data file from the generated files.
+&#9745; Create reusable [doT](http://olado.github.io/doT/) definitions, scripts.
+&#9745; ~~Create [jekyll](http://jekyllrb.com/) templates for the surrounding page stuff, like headers, footers, shared CSS.~~
 
 
 
 ## License
 
-Copyright (c) 2014, 2015, [Joel Purra](http://joelpurra.com/) All rights reserved.
+Copyright (c) 2014, 2014, 2015, 2016, 2017, [Joel Purra](http://joelpurra.com/) All rights reserved.
 
 When using ep-the-corrections, comply to the [GNU Affero General Public License 3.0 (AGPL-3.0)](https://en.wikipedia.org/wiki/Affero_General_Public_License). Please see the LICENSE file for details.
