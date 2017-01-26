@@ -16,7 +16,13 @@
 		<p>
 			Part of the <a href="https://joelpurra.com/projects/european-parliament/" rel="home">projects related to the European Parliament</a>. Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
 		</p>
-	</footer>
+		<p class="donate">
+			<a href="https://joelpurra.com/donate/proceed/?amount=5&currency=usd"><kbd>Donate $5 now</kbd></a>
+			<a href="https://joelpurra.com/donate/proceed/?amount=25&currency=usd"><kbd>Donate $25 now</kbd></a>
+			<a href="https://joelpurra.com/donate/proceed/?amount=100&currency=usd&invoice=true"><kbd>Donate $100 now</kbd></a>
+			<a href="https://joelpurra.com/donate/"><kbd>More options</kbd></a>
+		</p>
+		</footer>
 </body>
 
 </html>

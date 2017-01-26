@@ -8,7 +8,7 @@
       "url": "https://joelpurra.com/"
     },
   "homepage": "https://joelpurra.com/projects/european-parliament/",
-  "description": "Using data from ep-erroneous-votes, based on open data dumps from Parltrack, to visalize erroneous, and subsequently corrected, votes by Members of the European Parliament.",
+  "description": "Using data from ep-erroneous-votes, based on open data dumps from Parltrack, to visualize erroneous, and subsequently corrected, votes by Members of the European Parliament.",
   "main": "./src/render-templates.js",
   "repository": {
       "type": "git",
