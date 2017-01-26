@@ -107,7 +107,7 @@
                 <li><a href="./" rel="start">About this dataset</a></li>
                 <li><a href="erroneous-votes.html">Votings with erroneous/corrected votes</a></li>
                 <li><a href="grouped-by-mep.html">MEPs with corrected votes</a></li>
-                <li><a href="http://joelpurra.com/r/euparl" rel="home">Project page</a></li>
+                <li><a href="https://joelpurra.com/projects/european-parliament/" rel="home">Project page</a></li>
             </ul>
         </nav>
         <hr />

@@ -2,7 +2,7 @@
 	<footer>
 		<hr />
 		<p>
-			<a href="https://github.com/joelpurra/ep-the-corrections" rel="source">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014, 2014, 2015, 2016, 2017 <a href="http://joelpurra.com/" rel="author me">Joel Purra</a>.
+			<a href="https://github.com/joelpurra/ep-the-corrections" rel="source">European Parliament: The Corrections (ep-the-corrections)</a> &copy; 2014, 2014, 2015, 2016, 2017 <a href="https://joelpurra.com/" rel="author me">Joel Purra</a>.
 		</p>
 		<ul>
 			<li>Data is made available under the <a href="http://opendatacommons.org/licenses/odbl/1.0/" rel="external license">Open Database License 1.0</a>.</li>
@@ -14,7 +14,7 @@
 			Using data on erroneous/corrected votes in <a href="https://github.com/joelpurra/ep-erroneous-votes">ep-erroneous-votes</a>, based on <a href="http://parltrack.euwiki.org/dumps" rel="external">open data dumps</a> from <a href="http://parltrack.euwiki.org/" rel="external">Parltrack</a> licensed under the <a href="http://opendatacommons.org/licenses/odbl/" rel="external license">Open Database License</a>, to visualize erroneous, and subsequently corrected, votes by <a href="http://www.europarl.europa.eu/meps/" rel="external">Members</a> of the <a href="http://www.europarl.europa.eu/" rel="external">European Parliament</a>.
 		</p>
 		<p>
-			Part of the <a href="http://joelpurra.com/r/euparl" rel="home">projects related to the European Parliament</a>. Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
+			Part of the <a href="https://joelpurra.com/projects/european-parliament/" rel="home">projects related to the European Parliament</a>. Developed during the <a href="http://europarl.me/">Europarl Hackathon</a>, in preparation for the <a href="http://www.elections2014.eu/">European elections 2014</a>.
 		</p>
 	</footer>
 </body>

@@ -5,9 +5,9 @@
   "author": {
       "name": "Joel Purra",
       "email": "code+npm@joelpurra.com",
-      "url": "http://joelpurra.com/"
+      "url": "https://joelpurra.com/"
     },
-  "homepage": "http://joelpurra.github.com/ep-the-corrections/",
+  "homepage": "https://joelpurra.com/projects/european-parliament/",
   "description": "Using data from ep-erroneous-votes, based on open data dumps from Parltrack, to visalize erroneous, and subsequently corrected, votes by Members of the European Parliament.",
   "main": "./src/render-templates.js",
   "repository": {
@@ -29,6 +29,6 @@
   "dependencies" : {
       "configvention"   :  "^1.0.2",
       "dot"   :  "^1.0.2"
-    }, 
+    },
   "license": "AGPL-3.0"
 }
