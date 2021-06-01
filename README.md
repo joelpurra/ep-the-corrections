@@ -9,6 +9,14 @@
 
 See [projects related to the European Parliament](https://joelpurra.com/projects/european-parliament/) for background information, data, and results.
 
+
+
+> ## ⚠️ This project has been archived
+>
+> No future updates are planned. Feel free to continue using it, but expect no support.
+
+
+
 Using data from [ep-erroneous-votes](https://github.com/joelpurra/ep-erroneous-votes), based on [open data dumps](http://parltrack.euwiki.org/dumps) from [Parltrack](http://parltrack.euwiki.org/), to visualize erroneous, and subsequently corrected, votes by [Members](http://www.europarl.europa.eu/meps/) of the [European Parliament](http://www.europarl.europa.eu/).
 
 Developed during the [Europarl Hackathon](http://europarl.me/), in preparation for the [European elections 2014](http://www.elections2014.eu/).
